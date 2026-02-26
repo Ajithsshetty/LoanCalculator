@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan-App</title>
+    <style>
+        body {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items:center;
+            margin: auto;
+            height: 700px;
+            background-color: cadetblue;
+            font-family:serif;
+        }
+        .wrapper {
+            height: 780px;
+            width: 500px;
+            background-color:chocolate;
+            padding: 20px 25px;
+            border-radius: 10px;
+            box-shadow: 10px;
+        }
+        .wrapper h2 {
+            font-family:cursive;
+            font-size: 35px;
+        }
+        .wrapper .div-bar {
+            display: block;
+            width: 500px;
+            background-color:blue;
+            height: 4px;
+            border-radius: 10px;
+            margin: 5px 5px;
+        }
+    
+    .wrapper .Calculator {
+        position: relative;
+        flex-direction:column;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        padding: 10px 0px;
+       }
+
+     .Calculator  .Calculator-input {
+        position: relative;
+        width: 50%;
+        justify-content: space-around;
+        padding: 5px 10px;
+        display: block;
+     }
+    .Calculator .Calculator-input input {
+        width: 100%;
+        height: 20px;
+        padding: 10px 35px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-weight: 400;
+        font-size: 18px;
+        border: 1px solid black;
+        border-radius: 4px;
+    }
+    .Calculator .Calculator-input input:focus {
+        outline:none;
+        border: 1px solid cadetblue;
+    }
+    .Calculator .Calculator-input label {
+        color:antiquewhite;
+        font-size: 20px;
+        padding: 2px 4px;
+        font-weight:bold;
+    }
+    .Calculator .Calculator-input .Calculator-btn {
+        width: 50%;
+        padding: 10px 10px;
+        margin-top: 4px;
+        font-weight: bolder;
+        cursor: pointer;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: medium;
+        background-color: aqua;
+        border-radius: 10px;
+    }
+    /*to remove < & > symbole from Inputs */
+
+    .wrapper .Calculate-result {
+        position: relative;
+        display:block;
+        padding: 8px 15px;
+        margin: 7px;
+    }
+    .wrapper .Calculate-result ul {
+        width: 100%;
+        background-color: antiquewhite;
+        padding: 15px 15px;
+        border-radius: 5%;
+    }
+    .wrapper .Calculate-result li{
+        list-style:none;
+        line-height: 28px;
+        font-weight: 900;
+        font-size:large;
+    }
+
+    .Calculate-result .loan-emi, .Calculate-result .loan-principle, .Calculate-result .loan-intrest-rate ,.Calculate-result .loan-total {
+         font-weight: bolder;
+         font-size: large;
+         color:crimson;     
+    }
+
+    .Calculate-result canvas {
+      padding: 5px 10px;
+       height: 1cm; 
+      width: 40%; 
+
+    }
+
+
+        
+
+    </style>
+   
+</head>
+<body>
+    <div class="wrapper">
+        <h2>LOAN EMI CALCULATER</h2>
+        <span class="div-bar"></span>
+        <div class="Calculator">
+        <div class="Calculator-input">
+            <label for="">LOAN Amount(Rs):- </label>
+            <input type="number" id="loan_amount">
+        </div>
+         <div class="Calculator-input">
+            <label for="">LOAN Tenure(Year.):- </label>
+            <input type="number" id="loan_tenure">
+        </div>
+          <div class="Calculator-input">
+            <label for="">INTREST Rate(%):- </label>
+            <input type="number" id="loan_intrest">
+        </div>
+        <div class="Calculator-input">
+            <button class="Calculator-btn">Calculate EMI</button>
+        </div>
+        </div>
+    
+<div class="Calculate-result">
+    <canvas id="loanchart"></canvas>
+    <ul>
+        <li>Monthly Loan EMI :- <span class="loan-emi"></span></li>
+        <li>Principle Amount :- <span class="loan-principle"></span></li>
+        <li>Loan ON Intrest :- <span class="loan-intrest-rate"></span></li>
+        <li>Total Amount to be Paid :- <span class="loan-total"></span></li>
+    </ul>
+</div>
+</div>
+</body>
+ <script src="loanApp.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .Loan-calculater {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            width: 600px;
+            margin: 24px auto;
+            background: pink;
+            box-shadow: 60px;
+            border-radius: 10px;
+            color:crimson;
+            overflow: hidden;
+        }
+        .Loan-calculater, .Loan-calculater * {
+            box-sizing: border-box;
+        }
+
+
+        .Loan-calculater .top {
+            background-color: black;
+            color: wheat;
+            padding: 32px auto;
+            
+        }
+        .Loan-calculater .top h2 {
+            margin-top: 30px;
+        }
+
+        .Loan-calculater form {
+            display: flex;
+            gap: 8px;
+            justify-content: space-between;
+        }
+
+        .Loan-calculater .title {
+            margin-top: 16px;
+        }
+        .Loan-calculater form input {
+            font-size: 20px;
+            padding: 8px 24px;
+            width: 100%;
+        }
+        .Loan-calculater .result {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .Loan-calculater .result .left {
+            width: 100%;
+            padding: 8px 32px;
+         }
+        .Loan-calculater .left h3 {
+            font-size: 16px;
+            font-weight: 400;
+            margin-bottom: 8px;
+        }
+        .Loan-calculater .result .value {
+            font-size: 30px;
+            font-weight: 900;
+            padding-bottom: 10px;
+            border-bottom: 1px black solid;
+        }
+    .Loan-calculater .result .value ::before {
+        content:"$";
+        font-size: 24px;
+        font-weight: 400;
+        margin-right: 6px;
+        opacity: 0.4;
+    }
+    .Loan-calculater .cal-btn {
+        background-color: cadetblue;
+        color:crimson;
+        padding: 8px;
+        border-radius: 8px;
+        font-weight: 900;
+        cursor: pointer;
+        margin: 24px;
+    }
+
+    @media (max-width : 650px) {
+        .Loan-calculater {
+            width: 90%;
+            max-width: 500px;
+        }
+        .Loan-calculater form {
+            flex-direction: column;
+            gap: 20px;
+        }
+        .Loan-calculater .result {
+            flex-direction: column;
+            text-align: center;
+        }
+    }
+
+
+    </style>
+
+
+</head>
+<body>
+<script src="loan.js"></script>
+          <div class="Loan-calculater">
+<div class="top">
+<h2>LOAN CALCULATER</h2>
+<form action="#">
+<div class="group">
+<div class="title"> Amount </div>
+<input type="text" value="200" class="loan-amount"/>
+</div>
+
+<div class="group">
+<div class="title">Intrest Rate </div>
+<input type="text" value="300" class="Intrest-rate"/>
+</div>
+
+<div class="group">
+<div class="title">Tenure(in Months) </div>
+<input type="text" value="400" class="Tenure"/>
+</div>
+</form>
+</div>
+
+<div class="result">
+<div class="left">
+<div class="loan-emi">
+    <h3>Loan Emi</h3>
+<div class="value">123</div>
+</div>
+
+<div class="total-intrest">
+    <h3>Total Intrest Payable</h3>
+<div class="value">1234</div>
+</div>
+
+<div class="total-amount">
+    <h3>Total-Amount</h3>
+<div class="value">12345</div>
+</div>
+
+<button class="cal-btn"> Calculate </button>
+</div>
+
+<div class="right"> Chart </div>
+
+</div>
+</div> -->
+
+
+    
